@@ -2,7 +2,7 @@
 """
 Created on Wed Feb 15 14:46:25 2017
 
-@author: Guilherme
+@author: Ariana
 """
 import numpy as np
 import random as rd
