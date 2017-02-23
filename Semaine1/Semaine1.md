@@ -5,7 +5,7 @@ Anthill ARE (Dynamics) - UPMC
 
 Nous avons choisi d'étudier l'évolution temporelle d'une fourmilière en fonction de plusieurs paramètres, en particulier l'environnement, ainsi que des paramètres internes à la population de fourmis (taux de natalité et de mortalité, durée des différentes phases de vie, etc...).
 
-![Ant eating honey](http://orig15.deviantart.net/6ad2/f/2008/151/3/f/3f3b98c589d2917a80716c8ffb76982f.jpg)
+![Ant eating honey](https://github.com/Sawken/Anthill/blob/master/Images/fourmi.jpeg?raw=true)
 
 # Début de code
 
