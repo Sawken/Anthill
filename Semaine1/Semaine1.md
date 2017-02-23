@@ -64,7 +64,7 @@ def dynamics():
      larve[1:] = larve[:-1]
      larve[0] = oeuf[-1]
      oeuf[1:] = oeuf[:-1]
-     #viellissent d'un jour de la population de fourmis.
+     #vieillissement d'un jour de la population de fourmis.
      
      oeuf[0] = naissance()
      #naissance des fourmis.
