@@ -36,3 +36,19 @@ On a choisi ces valeurs là d'après nos recherches sur le temps moyen de vie d'
 
 On crée des vecteurs et pas de listes pour simplifier les opérations algebriques (somme élement
 par élément).
+
+
+```Python
+p_enfant = 5e-4
+p_final = 0.1
+p_adulte = np.exp(np.linspace(np.log(p_enfant),np.log(p_final),135))
+```
+
+p est la probabilité de mort d'une fourmi. On a choisi une probabilité qu'agumente selon 
+le viellissement de la population de fourmis, c'est-à-dire, une fourmi aura plus de chance de
+mourrir le plus elle est agée.
+
+On utilise la fonction linspace que crée un vecteur à valeurs également espacées. Pour crée un
+vecteur à valeurs que croissent exponentiellement, on prend son exponentielle. Pour que ce soit
+plus facile de choisir les valeurs initiale et finale, on utilise le logarithme des probabilités
+qu'on veut. 
