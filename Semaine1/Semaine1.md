@@ -109,4 +109,4 @@ def sim_plot(steps):
         plt.show()
         plt.pause(0.05)
  ```
- 
+ ![Graphe](https://github.com/Sawken/Anthill/blob/master/Images/figure_0.png?raw=true)
