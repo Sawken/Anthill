@@ -14,7 +14,8 @@ Dans un premier temps nous avons élaboré un programme capable de simuler l'evo
 A noter que tous nos chiffres sont basés sur la realite, nous pouvons ainsi nous rapprocher au mieux du système dynamique que nous voulons modéliser.
 
 # Code
-```
+```Python
+
 import numpy as np
 import random as rd
 import matplotlib.pyplot as plt
