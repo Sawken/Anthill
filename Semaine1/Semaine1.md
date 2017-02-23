@@ -110,3 +110,6 @@ def sim_plot(steps):
         plt.pause(0.05)
  ```
  ![Graphe](https://github.com/Sawken/Anthill/blob/master/Images/figure_0.png?raw=true)
+
+
+Cette image est un exemple du graphe crée par notre fonction. L'axe des ordonnées montre la quantité de fourmis vivant et l'axe des abscisses leur age en jours. Nous pouvons voir que la quantité de fourmis decroit 
