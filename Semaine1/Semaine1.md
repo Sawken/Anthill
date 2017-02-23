@@ -3,7 +3,7 @@ Anthill ARE (Dynamics) - UPMC
 
 # Introduction
 
-Nous avons choisi d'étudier l'__évolution temporelle d'une fourmilière en fonction de plusieurs paramètres__, en particulier l'environnement, ainsi que des paramètres internes à la population de fourmis (taux de natalité et de mortalité, durée des différentes phases de vie, etc...).
+Nous avons choisi d'étudier __l'évolution temporelle d'une fourmilière en fonction de plusieurs paramètres__, en particulier l'environnement, ainsi que des paramètres internes à la population de fourmis (taux de natalité et de mortalité, durée des différentes phases de vie, etc...).
 
 ![Ant eating honey](https://github.com/Sawken/Anthill/blob/master/Images/fourmi.jpeg?raw=true)
 
@@ -112,5 +112,5 @@ def sim_plot(steps):
  ![Graphe](https://github.com/Sawken/Anthill/blob/master/Images/figure_0.png?raw=true)
 
 
-Cette image est un exemple du graphe créé par notre fonction. L'axe des ordonnées montre la quantité de fourmis vivantes et l'axe des abscisses leur âge en jours. Nous pouvons voir que la quantité de fourmis suit une loi décroissante.
+Cette image est un exemple du graphe créé par notre fonction. L'axe des ordonnées montre la quantité de fourmis vivantes et l'axe des abscisses leur âge en jours. Nous pouvons voir que la quantité de fourmis suit une loi exponentielle décroissante à partir d'un temps t.
 Le graphe ne sera pas toujours le même car nous utilisons dans notre code des variables aléatoires (loi binomiale, etc...).
