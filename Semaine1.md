@@ -25,15 +25,14 @@ larve = np.zeros(15,dtype = "int32")
 nymphe = np.zeros(15,dtype = "int32")
 ouvriere = np.zeros(135,dtype = "int32")
 
-"""chaque vecteur contient le nombre total de fourmis dans chaque étape de developement.
-L'élément i d'une vecteur contient le nombre de fourmis qui sont dans l'étape correspondante 
-depuis i jours. Par exemple, adulte[5] contient le nombre de fourmis qui sont adultes depuis 5 jours."""
-
-"""On a supposé qu'une fourmi prend 15 jours pour passer de oeuf à larve, 15 jours pour passer
-de larve à nymphe et plus 15 jours pour devenir adulte. Elle vit au maximum 6 mois (180 jours). 
-On a choisi ces valeurs là d'après nos recherches sur le temps moyen de vie d'une fourmi."""
-
-"""On crée des vecteurs et pas de listes pour simplifier les opérations algebriques (somme élement
-par élément)."""
-
 ```
+Chaque vecteur contient le nombre total de fourmis dans chaque étape de developement.
+L'élément i d'une vecteur contient le nombre de fourmis qui sont dans l'étape correspondante 
+depuis i jours. Par exemple, adulte[5] contient le nombre de fourmis qui sont adultes depuis 5 jours.
+
+On a supposé qu'une fourmi prend 15 jours pour passer de oeuf à larve, 15 jours pour passer
+de larve à nymphe et plus 15 jours pour devenir adulte. Elle vit au maximum 6 mois (180 jours). 
+On a choisi ces valeurs là d'après nos recherches sur le temps moyen de vie d'une fourmi.
+
+On crée des vecteurs et pas de listes pour simplifier les opérations algebriques (somme élement
+par élément).
