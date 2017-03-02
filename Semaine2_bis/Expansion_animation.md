@@ -9,4 +9,4 @@ Dans ce programme, nous ferons la différenciation entre ces différents stades 
 ## Création de la fourmilière
 
 La fourmilière est initialement une matrice de taille ```dim*dim```. On initialise tous ses éléments à 0.
-On choisi ensuite aléatoirement les coordonnées de position de la reine grâce à la bibliothèque __random__
+On choisi ensuite aléatoirement les coordonnées de position de la reine grâce à la bibliothèque __random__, puis 
