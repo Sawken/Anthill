@@ -53,4 +53,4 @@ Ci-dessous un exemple où la reine est dans un angle
 
 <p align="center"><img src ="https://github.com/Sawken/Anthill/blob/master/Images/matrice_2.png?raw=true" alt="matrice with the queen in angle"/></p>
 
-- La prochaine étape est de crée une fonction qui permet de générer des tunnels, c'est à dire crée une ligne remplie progrèssivement (à chaque tour de boucle) de 0, puis une seconde fonction permettant de suivre l'évolution de ceux-ci.
+La prochaine étape est de crée une fonction qui permet de générer des tunnels, c'est à dire crée une ligne remplie progrèssivement (à chaque tour de boucle) de 0, puis une seconde fonction permettant de suivre l'évolution de ceux-ci.
