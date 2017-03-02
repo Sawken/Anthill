@@ -200,3 +200,4 @@ Rappelons que les couleurs correspondent au jours vécus par une fourmi et, par 
   * Entre 45 et 180 jours: ouvrière (_orange_)
   * Plus de 180 jours: reine (_rouge_)
   
+![final figure of animation](https://raw.githubusercontent.com/Sawken/Anthill/32bb426ceb7784ca05a3e71f8ef096970480dd0b/Images/figure_cecile_1.jpg)
