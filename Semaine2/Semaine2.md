@@ -42,3 +42,13 @@ size_map = 10
 ```
 
 <p align="center"><img src ="https://github.com/Sawken/Anthill/blob/master/Images/matrice_1.png?raw=true" alt="matrice with the queen"/></p>
+
+Nous avons fait face à une contrainte au moment où la reine se retrouvait au bord de la map car python gère les arrays de manière circulaire (comme un donut lol), nous avons donc géré ça en vérifiant la position relative autour de celle-ci à l'aide de la variable global
+```python
+neighbs = [(-1, -1), (-1, 0), (-1, 1),
+           ( 0, -1),          ( 0, 1),
+           ( 1, -1), ( 1, 0), ( 1, 1)]
+           ```
+Ci-dessous un exemple où la reine est dans un angle
+
+<p align="center"><img src ="https://github.com/Sawken/Anthill/blob/master/Images/matrice_2.png?raw=true" alt="matrice with the queen in angle"/></p>
