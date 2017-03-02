@@ -86,6 +86,9 @@ def sim_plot(steps):
         plt.plot(np.arange(end_oeuf,end_larve),larve)
         plt.plot(np.arange(end_larve,end_nymphe),nymphe)
         plt.plot(np.arange(end_nymphe,end_ouvriere),ouvriere)
+        plt.ylabel("Quantité de fourmis")
+        plt.xlabel("Âge des fourmis en jours")
+        plt.grid()
         plt.show()
         plt.pause(0.05)
         
