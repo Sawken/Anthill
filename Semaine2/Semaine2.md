@@ -41,5 +41,4 @@ Voici ci-dessous le résultat obtenu en exécutant la fonction set_queen avec la
 size_map = 10
 ```
 
-![matrice with the queen](https://github.com/Sawken/Anthill/blob/master/Images/matrice_1.png?raw=true)
-<div style="text-align:center"><img src ="https://github.com/Sawken/Anthill/blob/master/Images/matrice_1.png?raw=true" alt="matrice with the queen"/></div>
+<p align="center"><img src ="https://github.com/Sawken/Anthill/blob/master/Images/matrice_1.png?raw=true" alt="matrice with the queen"/></p>
