@@ -112,7 +112,7 @@ def sim_plot(steps):
         plt.show()
         plt.pause(0.05)
  ```
- ![Graphe](https://github.com/Sawken/Anthill/blob/master/Images/figure_0.png?raw=true)
+ ![Graphe](https://github.com/Sawken/Anthill/blob/master/Images/figure_1.png?raw=true)
 
 
 Cette image est un exemple du graphe créé par notre fonction. L'axe des ordonnées montre la quantité de fourmis vivantes et l'axe des abscisses leur âge en jours. Nous pouvons voir que la quantité de fourmis suit une loi exponentielle décroissante à partir d'un temps t.
