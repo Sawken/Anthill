@@ -30,10 +30,16 @@ def set_queen():
     x, y = queen
     map[y][x] = 2
     for k, l in neighbs:
-        if (k + x >= 0 and k + x < size_map and y + l >= 0 and l  + y < size_map):  # Check if we're not outside boundaries.
+        # Check if we're not outside boundaries.
+        if (k + x >= 0 and k + x < size_map and y + l >= 0 and l  + y < size_map):  
             map[l + y][k + x] = 0
     print(map)
 ```
 
-Voici ci-dessous le résultat obtenu en exécutant la fonction set_queen avec la valeur de ```python size_map = 10``` 
+Voici ci-dessous le résultat obtenu en exécutant la fonction set_queen avec la valeur de 
+```python
+size_map = 10
+```
+
 ![matrice with the queen](https://github.com/Sawken/Anthill/blob/master/Images/matrice_1.png?raw=true)
+<div style="text-align:center"><img src ="https://github.com/Sawken/Anthill/blob/master/Images/matrice_1.png?raw=true" alt="matrice with the queen"/></div>
