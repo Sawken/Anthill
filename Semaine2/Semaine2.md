@@ -48,7 +48,7 @@ Nous avons fait face à une contrainte au moment où la reine se retrouvait au b
 neighbs = [(-1, -1), (-1, 0), (-1, 1),
            ( 0, -1),          ( 0, 1),
            ( 1, -1), ( 1, 0), ( 1, 1)]
-           ```
+```
 Ci-dessous un exemple où la reine est dans un angle
 
 <p align="center"><img src ="https://github.com/Sawken/Anthill/blob/master/Images/matrice_2.png?raw=true" alt="matrice with the queen in angle"/></p>
