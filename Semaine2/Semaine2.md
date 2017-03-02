@@ -34,3 +34,6 @@ def set_queen():
             map[l + y][k + x] = 0
     print(map)
 ```
+
+Voici ci-dessous le résultat obtenu en exécutant la fonction set_queen avec la valeur de ```python size_map = 10``` 
+![matrice with the queen](https://github.com/Sawken/Anthill/blob/master/Images/matrice_1.png?raw=true)
