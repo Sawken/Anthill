@@ -52,7 +52,7 @@ Sachant que le nombre d'oeufs pondus varie entre 18 et 25, une première couche 
 ```Python
 def oeufs(matrice):
     n = naissance()
-    print(n)
+    print("Nombre de naissances:", n)
     # On part de l'hypothèse que la reine veut garder aussi près d'elle que possible ses oeufs
     # Sachant qu'elle peut garder au plus proche d'elle 8 oeufs:
     
@@ -102,6 +102,7 @@ Nous souhaitons obtenir une illustration de notre programme partiel. Nous faison
 
 ```Python
 import matplotlib.pyplot as plt
+from matplotlib import mpl
 
 # Affichage graphique de la matrice de la fourmilière. Nous fixons une échelle discrète
 # de couleurs qui représenteront les différentes étapes de la vie d'une fourmi.
@@ -120,8 +121,82 @@ def show_matrice(matrice):
     plt.show()
 ```
 
-Voici, par exemple, une figure que nous avons obtenue avec les instructions suivantes:
+Voici, par exemple, une figure que nous avons obtenue avec les instructions suivantes (la fonction __show_matrice__ affiche également: 'xreine = 20
+yreine = 20
+Nombre de naissances: 21' 
 ```Python
 dim = 25
 show_matrice(fourmilière)
 ```
+![Figure of matrix with queen and eggs around it](https://github.com/Sawken/Anthill/blob/master/Images/figure_cecile_0.png?raw=true)
+
+
+## Evolution de la population de fourmi: fonctions d'itération et d'affichage graphique
+
+Nous allons maintenant commencer à coder l'animation à proprement parler. Commençons pour cela par écrire une fonction __evolution__ qui simulera le déplacement des fourmis (une fourmi pouvant ne pouvant se déplacer qu'horizontalement ou verticalement d'une case par itération), ainsi que leur prise d'âge (une itération équivaut à un jour).
+
+```Python
+def evolution(matrice):
+    for x in range(dim-1):
+        for y in range(dim-1):
+            # s'il y a bien une fourmi à la position (x,y) et que
+            # celle-ci n'est pas la reine, elle se déplace aléatoirement
+            # vers une case qui n'est pas occupée.
+            if matrice[x,y] != 0 and matrice[x,y] < 180:
+                matrice[x,y] +=1
+                x1 = x
+                y1 = y
+                while matrice[x1,y1] != 0:
+                    x1 = x + rd.randint(-1,1)
+                    y1 = y +rd.randint(-1,1)
+                matrice[x1,y1] = matrice[x,y]
+                matrice[x,y] = 0
+            # si la fourmi est vieille de 180 jours, elle meurt.
+            if matrice[x,y] == 180:
+                matrice[x,y] = 0
+    return matrice
+```
+Nous nous intéressons maintenant à la façon par laquelle nous afficherons les différentes matrices obtenues par itération sur une seule et même figure. Nous avons tout d'abord eu des problèmes à ce sujet. En effet, ne sachant pas très bien utiliser le module __matshow__, nous avions un programme qui affichait une figure par itération. Notre professeur nous a redirigé vers d'autres exemples de codes, et nous sommes parvenus à faire l'animation voulue.
+
+Définissons d'abord les fonctions __iterate__ qui permet respectivement de simuler l'évolution de notre matrice après un jour, et __update__ qui nous sera utile lors du codage de la mise en animation.
+
+```Python
+def iterate(matrice):
+    oeufs(matrice)
+    evolution(matrice)
+    return matrice
+
+def update(matrice):
+    iterate(matrice)
+    im1.set_array(matrice)
+    return im1
+```
+
+Nous affichons maintenant les images obtenues à chaque itération sur une même figure nous pouvons ainsi suivre l'expansion de notre population de fourmi en temps réel.
+Nous choisissons de faire 100 iterations (```nb_images = 100```), avec un intervalle de 0.01 secondes entre chaque image (```sleep(0.01)```).
+
+```Python
+from time import sleep
+
+plt.ion()
+nb_images = 100
+fourmilière = np.zeros((dim,dim),"int32")
+show_matrice(fourmilière)
+im1 = plt.matshow(fourmilière,interpolation='nearest', cmap = cmap,norm=norm)
+
+
+for k in np.arange(nb_images):
+    update(fourmilière)
+    plt.draw()
+    sleep(0.1)
+```
+Voici un exemple de figure que nous avons obtenue après exécution de tout notre programme.Nous tenons à préciser que nous n'apportons ici qu'une image isolée de toute notre animation.
+
+Rappelons que les couleurs correspondent au jours vécus par une fourmi et, par conséquent, le stade de leur vie:
+  * Entre 0 et 1 jours: espace vide (_blanc_)
+  * Entre 1 et 15 jours: oeuf (_cyan_)
+  * Entre 15 et 30 jours: larve (_vert_)
+  * Entre 30 et 45 jours: nymphe (_jaune_)
+  * Entre 45 et 180 jours: ouvrière (_orange_)
+  * Plus de 180 jours: reine (_rouge_)
+  
