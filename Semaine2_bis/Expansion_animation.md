@@ -65,11 +65,19 @@ def oeufs(matrice):
     matrice[x_reine-1, y_reine+1] = 1
     matrice[x_reine-1, y_reine] = 1
     
-    # On enlève aux oeufs non-placés les 8 qui entourent la reine. La 2e couche autour de la reine peut contenir au plus 16 oeufs. Si elle est remplie alors il y aura 24 oeufs placés, sachant que la reine peut pondre au plus 25 oeufs.
+    # On enlève aux oeufs non-placés les 8 qui entourent la reine. 
+    # La 2e couche autour de la reine peut contenir au plus 16 oeufs.
+    # Si elle est remplie alors il y aura 24 oeufs placés, sachant que la reine
+    # peut pondre au plus 25 oeufs.
     
     n = n-8
     # dictionnaire des positions que peuvent prendre les oeufs de la 2e couche.
-    dict_pos = {1 : (x_reine-2, y_reine-2), 2: (x_reine-1, y_reine-2), 3: (x_reine, y_reine-2), 4: (x_reine+1, y_reine-2), 5: (x_reine+2, y_reine-2), 6: (x_reine+2, y_reine-1), 7: (x_reine+2, y_reine), 8: (x_reine+2, y_reine+1), 9: (x_reine+2, y_reine+2), 10: (x_reine+1, y_reine+2), 11: (x_reine, y_reine+2), 12: (x_reine-1, y_reine+2), 13: (x_reine-2, y_reine+2), 14: (x_reine-2, y_reine+1), 15: (x_reine-2, y_reine), 16: (x_reine-2, y_reine-1)}
+    dict_pos = {1 : (x_reine-2, y_reine-2), 2: (x_reine-1, y_reine-2), 3: (x_reine, y_reine-2),
+    4: (x_reine+1, y_reine-2), 5: (x_reine+2, y_reine-2), 6: (x_reine+2, y_reine-1), 
+    7: (x_reine+2, y_reine), 8: (x_reine+2, y_reine+1), 9: (x_reine+2, y_reine+2),
+    10: (x_reine+1, y_reine+2), 11: (x_reine, y_reine+2), 12: (x_reine-1, y_reine+2),
+    13: (x_reine-2, y_reine+2), 14: (x_reine-2, y_reine+1), 15: (x_reine-2, y_reine),
+    16: (x_reine-2, y_reine-1)}
     if n <= 16:
         L = []
         while len(L) < n:
@@ -95,7 +103,8 @@ Nous souhaitons obtenir une illustration de notre programme partiel. Nous faison
 ```Python
 import matplotlib.pyplot as plt
 
-# Affichage graphique de la matrice de la fourmilière. Nous fixons une échelle discrète de couleurs qui représenteront les différentes étapes de la vie d'une fourmi.
+# Affichage graphique de la matrice de la fourmilière. Nous fixons une échelle discrète
+# de couleurs qui représenteront les différentes étapes de la vie d'une fourmi.
 
 cmap = mpl.colors.ListedColormap(['white','cyan','green','yellow','orange','red'])
 bounds=[0,1,15,30,45,180,181]
