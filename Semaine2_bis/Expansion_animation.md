@@ -4,12 +4,12 @@
 Le but de ce programme intermédiaire à notre projet est de simuler l'expansion d'une fourmilière, initialisée comme une matrice de taille ```dim*dim``` (```dim``` une variable globale) et totalement remplie de 0. La __reine__ est placée aléatoirement dans la matrice puis, à chaque itération (une itération correspondant à un jour), pond aléatoirement un nombre d'__oeufs__ compris entre 18 et 25.
 Ces oeufs, arrivés à un certain âge, se transforment en __larves__, puis en __nymphes__ et enfin en __ouvrières__.
 Dans ce programme, nous ferons la différenciation entre ces différents stades de vies en attribuant à chacun une couleur, qui variera en fonction du nombres de jour qu'a vécus une fourmi.
-  * Entre 0 et 1 jours: espace vide (_blanc_)
-  * Entre 1 et 15 jours: oeuf (_cyan_)
-  * Entre 15 et 30 jours: larve (_vert_)
-  * Entre 30 et 45 jours: nymphe (_jaune_)
-  * Entre 45 et 180 jours: ouvrière (_orange_)
-  * Plus de 180 jours: reine (_rouge_)
+  * Entre 0 et 1 jours: espace vide (*blanc*)
+  * Entre 1 et 15 jours: oeuf (*cyan*)
+  * Entre 15 et 30 jours: larve (*vert*)
+  * Entre 30 et 45 jours: nymphe (*jaune*)
+  * Entre 45 et 180 jours: ouvrière (*orange*)
+  * Plus de 180 jours: reine (*rouge*)
 
 ## Création de la fourmilière
 
@@ -195,11 +195,11 @@ for k in np.arange(nb_images):
 Voici un exemple de figure que nous avons obtenue après exécution de tout notre programme.Nous tenons à préciser que nous n'apportons ici qu'une image isolée de toute notre animation.
 
 Rappelons que les couleurs correspondent au jours vécus par une fourmi et, par conséquent, le stade de leur vie:
-  * Entre 0 et 1 jours: espace vide (_blanc_)
-  * Entre 1 et 15 jours: oeuf (_cyan_)
-  * Entre 15 et 30 jours: larve (_vert_)
-  * Entre 30 et 45 jours: nymphe (_jaune_)
-  * Entre 45 et 180 jours: ouvrière (_orange_)
-  * Plus de 180 jours: reine (_rouge_)
+  * Entre 0 et 1 jours: espace vide (*blanc*)
+  * Entre 1 et 15 jours: oeuf (*cyan*)
+  * Entre 15 et 30 jours: larve (*vert*)
+  * Entre 30 et 45 jours: nymphe (*jaune*)
+  * Entre 45 et 180 jours: ouvrière (*orange*)
+  * Plus de 180 jours: reine (*rouge*)
   
   <p align="center"><img src ="https://raw.githubusercontent.com/Sawken/Anthill/23c481e53f40af53db5aff1e3d4667af6b96ba9f/Images/figure_cecile_2.jpg" alt="final figure of animation"/></p>
