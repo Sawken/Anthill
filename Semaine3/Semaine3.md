@@ -37,16 +37,16 @@ map_dist = np.zeros ((size_map,size_map), dtype = "float16")
     print (display_map())
 ```
 
-   Ensuite, nous avons crée la variable globale proba_tun, set à 0.1, que donne la probabilité de creuser un nouveau tunnel. Dans un deuxième temps nous alons écrire une fonction pour calculer cette probabilité de façon dynamique.
+   Ensuite, nous avons crée la variable globale __proba_tun__, définie à 0.1, que donne la probabilité de creuser un nouveau tunnel. Dans un deuxième temps nous voulons écrire une fonction pour calculer cette probabilité de façon dynamique.
 
-   Nous passons a l'écriture d'une fonction croissance. Dans un premier temps la fonction parcourt chaque case de la matrice map et regarde si l'élément est un zéro ou non. S'il s'agit d'un zéro, nous comparons un chiffre géneré aléatoirement avec la variable proba_tun. Le fourmilière grandira d'une case si le chiffre est plus petit.
+   Nous passons a l'écriture d'une fonction croissance. Dans un premier temps la fonction parcourt chaque case de la matrice __map__ et regarde si l'élément est un zéro ou non. S'il s'agit d'un zéro, nous comparons un chiffre géneré aléatoirement avec la variable __proba_tun__. Le fourmilière grandira d'une case si le chiffre est plus petit.
    
-   Après avoir décidé si un zéro cause la croissance du fourmilière ou non, nous alons choisir quel de ces voisins sera transformé en zéro. Pour cela, nous créons des fonctions auxiliaires pour que la fonction croissance ne devient pas très long
+   Après avoir décidé si un zéro cause la croissance du fourmilière ou non, nous alons choisir lequel de ces voisins sera transformé en zéro. Pour cela, nous créons des fonctions auxiliaires pour que la fonction croissance ne devienne pas très longue
    et difficile à comprendre. 
    
-   La première fonction que nous avons crée c'est la fonction dig_tunnel qui prend comme arguments des coordonnées (i, j) d'un élément de la matrice. Elle crée une liste de tuples avec les voisins existants et ces distances relatifs à la reine. Pour calculer les differentes probabilités d'être choisi pour chacun de ces élements, nous créons un autre fonction appellé proba_direction, qui prend comme argument cette liste de tuples creé par la fonction précedent appellée __this_neighbs__. 
+   La première fonction que nous avons créée est la fonction __dig_tunnel__ qui prend comme arguments des coordonnées __(i, j)__ d'un élément de la matrice. Elle crée une liste de tuples avec les voisins existants et leurs distances relatives à la reine. Pour calculer les differentes probabilités d'être choisi pour chacun de ces élements, nous créons un autre fonction appellé __proba_direction__, qui prend comme argument la liste de tuples creé par la fonction précedent appellée __this_neighbs__. 
    
-   La foction proba_direction calcule un liste de probabilités d'être choisi par rapport a la distance des éléments à la reine de façon lineaire, avec la probabilité de choisir l'élément plus loin 100 fois plus petit que celle de choisir le plus proche. Cela correspond à prend les probabilités proportionnelles à __f(d) = a * d + b__, avec __d__ la distance par rapport à la reine et __a__ et __b__ choisi de façon à donner __f(dmin) = 1 and f(dmax) = 100__. __Dmin__ est le plus petit distance presente en __this_neighbs__ et dmax la plus grande.
+   La foction __proba_direction__ calcule un liste de probabilités d'être choisi par rapport à la distance des éléments à la reine de façon lineaire, avec la probabilité de choisir l'élément plus loin 100 fois plus grande que celle de choisir le plus proche. Cela correspond à prend les probabilités proportionnelles à __f(d) = a * d + b__, avec __d__ la distance par rapport à la reine et __a__ et __b__ choisi de façon à donner __f(dmin) = 1__ et __f(dmax) = 100__. __Dmin__ est la plus petite distance presente en __this_neighbs__ et __dmax__ la plus grande.
    
    Voici ci-dessus le code des 3 fonctions (avec des comentaires en anglais):
    
