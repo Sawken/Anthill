@@ -115,3 +115,6 @@ def proba_direction (this_neighbs):
     
     return this_proba
 ```
+
+
+[Matrice tunnel 1]!(https://github.com/Sawken/Anthill/blob/master/Images/matrice_tunnel_fail.png?raw=true)
