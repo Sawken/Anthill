@@ -122,6 +122,8 @@ def proba_direction (this_neighbs):
 
    Comme on peut le voir, les tunnels (representé par des zeros en bleu) ne sont pas de vrais tunnels et en fait la fonction a crée un cercle de zéros autour de la reine, ce qui ne pas le résultat souhaité car les fourmis font des tunnels fins et longs. Pour y remedier, nous avons crée deux autres fonctions, qui prennent en consideration les voisinage de chaque zéro.
    
+   La fonction __vosinage_zero__ prend comme arguments des coordonnées (i, j) d'un élément de la matrice et renvoie la proportion de zéros autour de cette élément. La fonction __proba_tun__ prendre ces mêmes coordonnées comme arguments et utilise la fonction d'avant pour calculer un probabilité de creation de tunnel par rapport a la proportions de zeros en voisinage. Si plus de la moitie des voisins sont deja de zeros, la fonciton renvoie zero. Sinon, elle renvoie la probabilité de creation d'un tunnel, en calculant __f(x) = a * (x - 1 / 2)**2__, avec __a__ choisi pour avoir __f(1 / 8) = 1 / 2__.
+   
 ```python   
    def voisinage_zero (i, j):
     """ 
