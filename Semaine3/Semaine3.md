@@ -159,3 +159,7 @@ def proba_tun (i, j):
 Vous pouvez voir un aperçu de ce qui se passe réellement grâce à l'image ci-dessous
 
 <p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/matrice_tunnel_succes.png?raw=true" alt="Matrice tunnel succes" /></p>
+
+Comme vous pouvez le constater la création de tunnels parait clairement plus naturel.
+Par la suite nous améliorerons les fonctions qui créent les probabilités afin qu'elles prennent en considération la naissance et la mort des fourmis.
+Puis nous créerons une fonction de destruction pour les tunnels et nous améliorerons la simulation.
