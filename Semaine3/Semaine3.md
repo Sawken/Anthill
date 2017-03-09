@@ -117,4 +117,5 @@ def proba_direction (this_neighbs):
 ```
 
 
-[Matrice tunnel 1]!(https://github.com/Sawken/Anthill/blob/master/Images/matrice_tunnel_fail.png?raw=true)
+<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/matrice_tunnel_fail.png?raw=true" alt="Matrice tunnel 1">
+</p>
