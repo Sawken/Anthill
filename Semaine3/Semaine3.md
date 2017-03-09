@@ -48,7 +48,7 @@ map_dist = np.zeros ((size_map,size_map), dtype = "float16")
    
    La foction proba_direction calcule un liste de probabilités d'être choisi par rapport a la distance des éléments à la reine de façon lineaire, avec la probabilité de choisir l'élément plus loin 100 fois plus petit que celle de choisir le plus proche. Cela correspond à prend les probabilités proportionnelles à __f(d) = a * d + b__, avec __d__ la distance par rapport à la reine et __a__ et __b__ choisi de façon à donner __f(dmin) = 1 and f(dmax) = 100__. __Dmin__ est le plus petit distance presente en __this_neighbs__ et dmax la plus grande.
    
-   Voici ci-dessus le code des 3 fonctions:
+   Voici ci-dessus le code des 3 fonctions (avec des comentaires en anglais):
    
 ```python   
 def croissance ():
@@ -115,7 +115,41 @@ def proba_direction (this_neighbs):
     
     return this_proba
 ```
-
+ En iterant 50 fois la fonction __croissance__, nous obtenons la figure suivante:
 
 <p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/matrice_tunnel_fail.png?raw=true" alt="Matrice tunnel 1">
 </p>
+
+   Comme on peut le voir, les tunnels (representé par des zeros en bleu) ne sont pas de vrais tunnels et en fait la fonction a crée un cercle de zéros autour de la reine, ce qui ne pas le résultat souhaité car les fourmis font des tunnels fins et longs. Pour y remedier, nous avons crée deux autres fonctions, qui prennent en consideration les voisinage de chaque zéro.
+   
+```python   
+   def voisinage_zero (i, j):
+    """ 
+    Computes the proportion of zeros in the neighborhood of a element with
+    coordinates i, j in the matrix.
+    """    
+    
+    cpt_0 = 0
+    cpt_total = 0
+    for k, l in neighbs:
+       if (k + i >= 0 and k + i < size_map and l + j >= 0 and l + j < size_map): 
+           cpt_total = cpt_total + 1
+           if map[i + k, j + l] == 0:
+               cpt_0 = cpt_0 + 1
+    
+    return float(cpt_0/cpt_total)
+
+
+def proba_tun (i, j):
+    """
+    Computes the probability of digging a new tunnel from the position (i, j) taking in account the proportion
+    of neighbors that are already dig. If more than half of the neighbors are already tunnels, the function return zero
+    (so, no more tunnels are made). Otherwise, the probability of digging a tunnel is set to be under the form
+    f(x) = a * (x - 1 / 2)**2, with "a" chosen in order to have f(1 / 8) = 1 / 2.
+    """
+    t = voisinage_zero (i, j)
+    if t < 0.5:
+        return (32/9)*(t - 1/2)**2
+    else:
+        return 0
+```
