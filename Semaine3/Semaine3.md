@@ -155,3 +155,7 @@ def proba_tun (i, j):
     else:
         return 0
 ```
+
+Vous pouvez voir un aperçu de ce qui se passe réellement grâce à l'image ci-dessous
+
+<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/matrice_tunnel_succes.png?raw=true" alt="Matrice tunnel succes" /></p>
