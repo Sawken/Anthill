@@ -120,9 +120,9 @@ def proba_direction (this_neighbs):
 <p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/matrice_tunnel_fail.png?raw=true" alt="Matrice tunnel 1">
 </p>
 
-   Comme on peut le voir, les tunnels (representé par des zeros en bleu) ne sont pas de vrais tunnels et en fait la fonction a crée un cercle de zéros autour de la reine, ce qui ne pas le résultat souhaité car les fourmis font des tunnels fins et longs. Pour y remedier, nous avons crée deux autres fonctions, qui prennent en consideration les voisinage de chaque zéro.
+   Comme on peut le voir, les tunnels (representé par des zeros en bleu) ne sont pas de vrais tunnels et en fait la fonction a crée un cercle de zéros autour de la reine, ce qui n'est pas le résultat souhaité car les fourmis font des tunnels fins et longs. Pour y remedier, nous avons crée deux autres fonctions, qui prennent en consideration le voisinage de chaque zéro.
    
-   La fonction __vosinage_zero__ prend comme arguments des coordonnées (i, j) d'un élément de la matrice et renvoie la proportion de zéros autour de cette élément. La fonction __proba_tun__ prendre ces mêmes coordonnées comme arguments et utilise la fonction d'avant pour calculer un probabilité de creation de tunnel par rapport a la proportions de zeros en voisinage. Si plus de la moitie des voisins sont deja de zeros, la fonciton renvoie zero. Sinon, elle renvoie la probabilité de creation d'un tunnel, en calculant __f(x) = a * (x - 1 / 2)**2__, avec __a__ choisi pour avoir __f(1 / 8) = 1 / 2__.
+   La fonction __vosinage_zero__ prend comme arguments les coordonnées __(i, j)__ d'un élément de la matrice et renvoie la proportion de zéros autour de cette élément. La fonction __proba_tun__ prendre ces mêmes coordonnées comme arguments et utilise la fonction d'avant pour calculer un probabilité de creation de tunnel par rapport a la proportions de zeros en voisinage. Si plus de la moitie des voisins sont deja de zeros, la fonction renvoie zero. Sinon, elle renvoie la probabilité de creation d'un tunnel, en calculant __f(x) = a * (x - 1 / 2)**2__, avec __a__ choisi pour avoir __f(1 / 8) = 1 / 2__.
    
 ```python   
    def voisinage_zero (i, j):
@@ -156,10 +156,9 @@ def proba_tun (i, j):
         return 0
 ```
 
-Vous pouvez voir un aperçu de ce qui se passe réellement grâce à l'image ci-dessous
+Nous pouvons voir un aperçu de ce qui se passe grâce à l'image ci-dessous :
 
 <p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/matrice_tunnel_succes.png?raw=true" alt="Matrice tunnel succes" /></p>
 
-Comme vous pouvez le constater la création de tunnels parait clairement plus naturel.
-Par la suite nous améliorerons les fonctions qui créent les probabilités afin qu'elles prennent en considération la naissance et la mort des fourmis.
-Puis nous créerons une fonction de destruction pour les tunnels et nous améliorerons la simulation.
+Comme on peut le constater, la création de tunnels parait clairement plus naturelle.
+Par la suite nous améliorerons les fonctions qui créent les probabilités afin qu'elles prennent en considération la naissance et la mort des fourmis, puis nous créerons une fonction de destruction pour les tunnels et nous améliorerons la simulation.
