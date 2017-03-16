@@ -13,13 +13,13 @@ Il faudrait aussi créer une fonction qui compte la quantité de zéros dans not
 
 ## Premier cas
 
-Si le nombre de tunnels existants est supérieur à __max__, alors la fourmilière sera trop grande par rapport à la quantité de fourmis; on choisira donc de supprimer des tunnels. Ainsi, on espère obtenir une croissance/décroissance de la fourmilière qui sera représentative de la réalité.
+Si le nombre de tunnels existants est supérieur à __max__, alors la fourmilière sera trop grande par rapport à la quantité de fourmis; on choisira donc de supprimer des tunnels. Ainsi, nous espèrons obtenir une croissance/décroissance de la fourmilière qui sera représentative de la réalité.
 
-Pour faire cette suppression, on prendra également en considération la distance de chaque tunnel par rapport à la reine. On créera ensuite une fonction pseudo-aléatoire, mais qui prendra en considération cette distance, qui choisira de détruire en priorité les tunnels les plus éloignés de la reine.
+Pour faire cette suppression, nous voulons prendre également en considération la distance de chaque tunnel par rapport à la reine. Nous créerons une fonction pseudo-aléatoire, qui prendra en considération cette distance et choisira de détruire en priorité les tunnels les plus éloignés de la reine.
 
 ## Deuxième cas
 
-Dans le cas où le nombre de tunnels déjà existants est égal à __max__, on est dans un état d'équilibre momentané. On n'effectue pas de changement sur les tunnels.
+Dans le cas où le nombre de tunnels déjà existants est égal à __max__, nous sommes dans un état d'équilibre momentané et nous n'effectuerons pas de changement sur les tunnels.
 
 ## Troisième cas
 
