@@ -28,7 +28,7 @@ Deux possibilités s'offrent à nous:
 
  * Soit on laisse le programme créer des tunnels jusqu'à ce que la quantité de tunnels soit égale à __max__. Pour cela, nous serions probablement obligés de modifier la fonction croissance afin qu'elle prenne ce cas en considération.
  
- * Une autre possibilité est de laisser le programme créer une quantité illimitée de tunnels avec la fonction __croissance__. Il peut alors arriver que la fonction crée un nombre __x__ de tunnels tel que x + nombre de tunnels existants soit supérieur à max.
+ * Une autre possibilité est de laisser le programme créer une quantité illimitée de tunnels avec la fonction __croissance__. Il peut alors arriver que la fonction crée un nombre __x__ de tunnels tel que _x + nombre de tunnels existants_ soit supérieur à max.
 
 
 
