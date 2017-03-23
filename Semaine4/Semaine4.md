@@ -6,16 +6,15 @@ Le problème avec le code de la semaine 3 est qu'il ne prend pas en compte les f
 
 ## Explication
 
-L'idée serait de créer une fonction qui va prendre en compte la quantité de fourmis déjà existante initialement, ainsi que la quantité de zéros de notre matrice fourmilière (chaque zéro représentant un tunnel). Nous utiliserons ensuite une variable ```ratio_fourmis_tunnels``` qui serait soit globale, soit donnée par l'utilisateur en paramètre de la fonction, et qui indiquerait la quantité maximale de tunnels qui peuvent être créées par fourmi. Par exemple, si nous prenons ```ratio_fourmis_tunnels = 1``` et une quantité ```n = 100``` de fourmis, nous pourrons avoir au maximum ```max = n * ratio_fourmis_tunnels``` soit 1 * 100 tunnels dans notre matrice.
+L'idée première serait de créer une fonction qui prendre en compte la quantité de fourmis déjà existante initialement, ainsi que la quantité de zéros de notre matrice fourmilière (chaque zéro représentant un tunnel). Nous utiliserons ensuite une variable ```ratio_fourmis_tunnels``` qui serait soit globale, soit donnée par l'utilisateur en paramètre de la fonction, et qui indiquerait la quantité maximale de tunnels qui peuvent être créées par fourmi. Par exemple, si nous prenons ```ratio_fourmis_tunnels = 1``` et une quantité ```n = 100``` de fourmis, nous pourrons avoir au maximum ```max = n * ratio_fourmis_tunnels``` soit 1 * 100 tunnels dans notre matrice.
 
-
-Il faudrait aussi créer une fonction qui compte la quantité de zéros dans notre matrice-fourmilière. Ce chiffre sera utilisée pendant l'appel de la fonction précédente.
+Pour cela, il faudrait aussi créer une fonction qui compte la quantité de zéros dans notre matrice-fourmilière. Ce chiffre sera utilisée pendant l'appel de la fonction précédente.
 
 ## Premier cas
 
 Si le nombre de tunnels existants est supérieur à __max__, alors la fourmilière sera trop grande par rapport à la quantité de fourmis; on choisira donc de supprimer des tunnels. Ainsi, nous espèrons obtenir une croissance/décroissance de la fourmilière qui sera représentative de la réalité.
 
-Pour faire cette suppression, nous voulons prendre également en considération la distance de chaque tunnel par rapport à la reine. Nous créerons une fonction pseudo-aléatoire, qui prendra en considération cette distance et choisira de détruire en priorité les tunnels les plus éloignés de la reine.
+Pour faire cette suppression, nous voulons prendre également en considération la distance de chaque tunnel par rapport à la reine. Dans un premier temps, nous essaierons de créer une fonction qui prendra en considération cette distance et choisira de détruire en priorité les tunnels les plus éloignés de la reine.
 
 ## Deuxième cas
 
@@ -29,6 +28,8 @@ Deux possibilités s'offrent à nous:
  * Soit on laisse le programme créer des tunnels jusqu'à ce que la quantité de tunnels soit égale à __max__. Pour cela, nous serions probablement obligés de modifier la fonction croissance afin qu'elle prenne ce cas en considération.
  
  * Une autre possibilité est de laisser le programme créer une quantité illimitée de tunnels avec la fonction __croissance__. Il peut alors arriver que la fonction crée un nombre __x__ de tunnels tel que _x + nombre de tunnels existants_ soit supérieur à __max__.
+
+Nous 
 
 
 
