@@ -173,11 +173,11 @@ def display_plot_fourmis (ax2, fig2) :
     fig2.canvas.draw()    
    ```
    
-Les deux autres fonctions, __init_plot_fourmiliere__ et __display_plot_fourmiliere__, s'occupent de l'affichage de la fourmilière. La première initialise la fenêtre graphique et la deuxième fait l'affichage en boucle de la fourmilière. Pour les couleurs, nous avons crée un _color map_ personalisé: 
+Les deux autres fonctions, __init_plot_fourmiliere__ et __display_plot_fourmiliere__, s'occupent de l'affichage de la fourmilière. La première initialise la fenêtre graphique et la deuxième fait l'affichage en boucle de la fourmilière. Pour les couleurs, nous avons crée un _color map_ personalisé (la reine apparaît en rouge, les tunnels en blanc): 
 
 ```python
 # Defining a personalized color map.
-# 2 = green
+# 2 = red
 # 1 = black
 # 0 = white
 
@@ -213,3 +213,9 @@ def display_plot_fourmiliere (ax1, fig1):
     ax1.set_xticks([]), ax1.set_yticks([])
     fig1.canvas.draw()   
 ```
+
+## Simulations 
+
+Nous avons tourne le code presenté plusieurs fois, voici une figure correspondante du résultat typique obtenu avec  ```ratio_fourmis_tunnels = 0.5```:
+<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas_circular1.png?raw=true" alt="Simmulation foumilière 1">
+</p>
