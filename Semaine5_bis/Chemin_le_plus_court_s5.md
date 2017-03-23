@@ -72,7 +72,7 @@ def source(espace):
 ```
 
 
-## Génération de la fourmi dite "éclaireuse"
+## Génération et déplacement de la fourmi dite "éclaireuse"
 
 A un endroit aléatoire alentour de la fourmilière, une fourmi éclaireuse apparaît et se déplace dans l'espace jusqu'à atteindre la source de nourriture.
 
@@ -80,7 +80,9 @@ A un endroit aléatoire alentour de la fourmilière, une fourmi éclaireuse appa
 
 # Dictionnaire des positions possibles à la sortie de la fourmilière:
 
-dict_pos = {1: (dim - 6, dim - 1), 2: (dim -6, dim -2), 3: (dim -6,dim -3), 4: (dim -6, dim -4), 5: (dim -6, dim -5), 6: (dim -6, dim -6), 7: (dim -5, dim -6), 8: (dim -4,dim  -6), 9: (dim -3, dim -6), 10: (dim -2,dim -6), 11: (dim -1,dim -6)}
+dict_pos = {1: (dim - 6, dim - 1), 2: (dim -6, dim -2), 3: (dim -6,dim -3), 4: (dim -6, dim -4),
+5: (dim -6, dim -5), 6: (dim -6, dim -6), 7: (dim -5, dim -6), 8: (dim -4,dim  -6),
+9: (dim -3, dim -6), 10: (dim -2,dim -6), 11: (dim -1,dim -6)}
 
 def eclaireuse(espace):
     x_ecl, y_ecl = dict_pos[rd.randint(1, 11)]
@@ -97,13 +99,34 @@ Pour cela, nous codons la fonction __proba_voisins__ qui prend en argument la li
 ```Python
 
 def proba_voisins(liste_voisins):
+
     this_proba = np.zeros(len(liste_voisins))
-    print (this_proba)
     for i in range(len(liste_voisins)):
         x, y = liste_voisins[i]
         print (espace[x][y])
         this_proba[i] = (espace[x][y]+1)
     this_proba = this_proba/np.sum(this_proba)
+    
     return this_proba
 ```
 
+La fonction __compt_voisins__ paramètres les coordonnées de position d'une fourmi et choisit une position aléatoire voisine à la fourmi, en associant à chaque case voisine par laquelle elle peut passer (ie différente de -1) la probabilité qui lui correspond dans l liste __this_proba__, grâce à la méthode ```np.random.choice(liste1, liste2)```. La fonction retourne les coordonnées de la nouvelle position de la fourmi.
+
+```Python
+
+def compt_voisins(i,j,set_visite):
+    
+    liste_voisins = []
+    for k, l in neighbs:
+        if (l + i >= 0 and l + i < dim and j + k >= 0 and k + j < dim): 
+        # Vérifie qu'on ne soit pas en-dehors de la matrice
+            if ((l+i,k+j) not in set_visite) and (espace[l+i][k+j] != -1):
+                # Assure que la position n'a pas encore été visitée, et que ce ne soit
+                # pas la fourmilière
+                liste_voisins.append([l+i,k+j])
+                
+    this_proba = proba_voisins (liste_voisins)
+    indice = np.random.choice (len(liste_voisins),p = this_proba)
+    
+    return liste_voisins[indice]
+```
