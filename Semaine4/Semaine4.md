@@ -216,6 +216,12 @@ def display_plot_fourmiliere (ax1, fig1):
 
 ## Simulations 
 
-Nous avons tourne le code presenté plusieurs fois, voici une figure correspondante du résultat typique obtenu avec  ```ratio_fourmis_tunnels = 0.5```:
+Nous avons tourne le code presenté plusieurs fois, voici une figure correspondante du résultat typique obtenu avec  ```ratio_fourmis_tunnels = 0.5``` après 1 an (c'est-à-dire 365 tours de boucle):
 <p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas_circular1.png?raw=true" alt="Simmulation foumilière 1">
 </p>
+
+Nous pouvons voir dans l'image que la fourmilière ansi crée est encore un peu loin de la realité car son format est circulaire et la densité de tunnels est très grande. Nous croyons que le format circulaire provient du choix deterministe de tunnels à détruire dans la fonction __decroissance_tun__, qui sont ceux qui sont le plus eloignés de la reine (dans la distance euclidienne, d'où le cercle). Pour résoudre cela nous comptons modifier la fonction pour que le choix de tunnels à détruire soit plus aléatoire. 
+
+Dans un premier momment, nous avons cru que pour résoudre le problème de la densité de tunnels il suffirait de changer la proportion maximale de voisins d'un tunnel à partir de laquelle on empecherait la création de nouveaux tunnels autour de celui-ci. Néanmoins, cette première solution n'est pas satisfaisante car si nous diminuons trop ce paramètre, nous arrivons à des situations où la croissance de la fourmilière est completement empechée. Il faut donc une solution plus élaboré a ce problème (probablement en créant des differents cas selon la distance de la reine).
+
+Pour la semaine prochaine nous comptons résoudre ces problèmes afin de avoir une simmulation complètement fonctionnelle. Nous alons aussi travailler sur la deuxième partie de ce projet, portant sur la simulation de la recherche de la nourriture par une fourmi. 
