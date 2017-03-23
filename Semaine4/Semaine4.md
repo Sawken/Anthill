@@ -91,7 +91,43 @@ def decroissance_tun_old (quant_tun) :
   ```
  
  
- decidé de ne pas changer la fonction __croissance__, maintenant appelé __croissance_tun__ (pour eviter la confusion avec la fonction __croissance_fourmis__), et la place de créer une nouvelle fonction __dynamics__ qui englob
+Nous avons decidé de ne pas changer la fonction __croissance__, maintenant appelé __croissance_tun__ (pour eviter la confusion avec la fonction __croissance_fourmis__ de la semaine 1), et à la place de créer une nouvelle fonction __dynamics__. Elle s'occuppe d'initialiser la fourmilière et ensuite faire la boucle où, a chaque tour, la fonction __croissance_fourmis__ est appellée et on decide si l'on appelera soit la fonction __croissance_tun__, soit la fonction __decroissance_tun__ en termes de la différence entre la quantité de tunnels dans __map__ et le nombre maximal de tunnels qui peuvent être construits, calculé par ```ratio_fourmis_tunnels * np.sum(ouvriere)``` 
+ 
+```python
+def dynamics (nb):
+    """
+    This function creates an anthill and simulates its growth, relating the creation
+    of tunnels to the quantity of adults ants alive each turn. If the quantity of 
+    ants isnt big enough, the function destroys tunnels, else it creates new ones. 
+    """
+    
+    init_fourmis ()
+    set_queen()
+    ax1, fig1 = init_plot_fourmiliere ()
+    ax2, fig2 = init_plot_fourmis ()
+    plt.ion()
+    
+    for i in range(nb):
+        croissance_fourmis()
+        quant_tun = quant_zeros () - ratio_fourmis_tunnels * np.sum(ouvriere)
+        if quant_tun < 0:
+            croissance_tun ()
+            
+        elif quant_tun > 0:
+            decroissance_tun (math.ceil (quant_tun))
+            #we need it to be an integer bigger than zero.
+
+        display_plot_fourmiliere (ax1, fig1)
+        display_plot_fourmis (ax2, fig2)
+
+        plt.show()
+        plt.pause(0.01)
+
+        #plt.waitforbuttonpress() #If we want to control manually when it changes.
+```   
+
+
+
 
 
 
