@@ -60,7 +60,7 @@ def quant_zeros ():
             if map[i][j] == 0 and map_dist[i][j] > rayon:
                 rayon = map_dist[i][j]
     return rayon
-    ```
+```
  
  Avec ces deux fonctions prêtes, nous avons ensuite travaillé sur la fonction __decroissance_tun__. Nous avons decidé que cette fonction prendra en argument le nombre de tunnels (__quant_tun__) que l'on veut détruire, que nous calculerons dans la fonction __dynamics__ dont la description sera donnée dans la suite. 
 
