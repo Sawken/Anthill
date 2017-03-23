@@ -6,15 +6,15 @@
 
 ## Explication
 
- L'idée première serait de créer une fonction qui prendre en compte la quantité de fourmis déjà existante initialement, ainsi que la quantité de zéros de notre matrice fourmilière (chaque zéro représentant un tunnel). Nous utiliserons ensuite une variable ```ratio_fourmis_tunnels``` qui serait soit globale, soit donnée par l'utilisateur en paramètre de la fonction, et qui indiquerait la quantité maximale de tunnels qui peuvent être créées par fourmi. Par exemple, si nous prenons ```ratio_fourmis_tunnels = 1``` et une quantité ```n = 100``` de fourmis, nous pourrons avoir au maximum ```max = n * ratio_fourmis_tunnels``` soit 1 * 100 tunnels dans notre matrice.
+ L'idée première serait de modifier la fonction __croissance__ pour créer une fonction qui prend en compte la quantité de fourmis déjà existante initialement, ainsi que la quantité de zéros de notre matrice fourmilière (chaque zéro représentant un tunnel). 
 
- Pour cela, il faudrait aussi créer une fonction qui compte la quantité de zéros dans notre matrice-fourmilière. Ce chiffre sera utilisée pendant l'appel de la fonction précédente.
+ Nous alons ensuite créer une fonction qui détruit des tunnels si leur nombre est trop grand par rapport à la quantité de fourmis. Pour cela, il faudrait créer une fonction qui compte la quantité de zéros dans notre matrice-fourmilière. Ce chiffre sera utilisée pendant l'appel de la fonction. Nous utiliserons une variable ```ratio_fourmis_tunnels``` qui serait soit globale, soit donnée par l'utilisateur en paramètre de la fonction, et qui indiquerait la quantité maximale de tunnels qui peuvent être créées par fourmi. Par exemple, si nous prenons ```ratio_fourmis_tunnels = 1``` et une quantité ```n = 100``` de fourmis, nous pourrons avoir au maximum ```max = n * ratio_fourmis_tunnels``` soit __1 * 100__ tunnels dans notre matrice.
 
 ## Premier cas
 
  Si le nombre de tunnels existants est supérieur à __max__, alors la fourmilière sera trop grande par rapport à la quantité de fourmis; on choisira donc de supprimer des tunnels. Ainsi, nous espèrons obtenir une croissance/décroissance de la fourmilière qui sera représentative de la réalité.
 
- Pour faire cette suppression, nous voulons prendre également en considération la distance de chaque tunnel par rapport à la reine. Dans un premier temps, nous essaierons de créer une fonction qui prendra en considération cette distance et choisira de détruire en priorité les tunnels les plus éloignés de la reine.
+ Pour faire cette suppression, nous voulons prendre également en considération la distance de chaque tunnel par rapport à la reine. Dans un premier temps, nous essaierons de créer une fonction qui prendra en considération cette distance et choisira de détruire en priorité les tunnels les plus éloignés de la reine. 
 
 ## Deuxième cas
 
@@ -29,11 +29,11 @@ Deux possibilités s'offrent à nous:
  
  * Une autre possibilité est de laisser le programme créer une quantité illimitée de tunnels avec la fonction __croissance__. Il peut alors arriver que la fonction crée un nombre __x__ de tunnels tel que _x + nombre de tunnels existants_ soit supérieur à __max__.
 
- Nous avons choisi la deuxième possibilité car elle nous semble plus interessante. De cette façon, la dinamique de croissance/décroissance du fourmillière difficilement attendra un équilibre statique.
+Nous avons choisi la deuxième possibilité car elle nous semble plus interessante. De cette façon, la dinamique de croissance/décroissance du fourmillière difficilement attendra un équilibre statique.
 
 ## Fonctions
 
- La première fonction qui nous avons écrit cette semaine est  ```quant_zeros ()```, qui compte la quantité totale de tunnels existent dans notre matrice __map__ à un moment donné. Au lieu d'utiliser un boucle imbrique double pour parcourir la matrice nous avons preferé utiliser la fonction ```sum``` de la bibliothèque numpy.
+ La première fonction qui nous avons écrit cette semaine est  ```quant_zeros ()```, qui compte la quantité totale de tunnels existentes dans notre matrice __map__ à un moment donné. Au lieu d'utiliser une boucle imbriquée double pour parcourir la matrice nous avons preferé utiliser la fonction ```sum``` de la bibliothèque numpy et exploiter le fait que ```True``` en Python est consideré comme 1 et ```False``` comme 0.
 
 ```python
 def quant_zeros ():
@@ -43,10 +43,8 @@ def quant_zeros ():
     """
     
     return np.sum(map == 0)  
-    
-
  ```
-
+ Avec cette fonction prête, nous avons ensuite changé la fonction __croissance__, maintenant appelé __croissance_tun__ (pour eviter la confusion avec la fonction __croissance_fourmis__), pour qu'elle prendre
 
 
 
