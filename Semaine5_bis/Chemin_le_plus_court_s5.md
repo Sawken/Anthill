@@ -68,5 +68,42 @@ def source(espace):
                 if (y < dim) and (y >= 0):
                     if espace[x,y] != parts:
                         espace[x,y] = 3
-    return 
+    return espace
 ```
+
+
+## Génération de la fourmi dite "éclaireuse"
+
+A un endroit aléatoire alentour de la fourmilière, une fourmi éclaireuse apparaît et se déplace dans l'espace jusqu'à atteindre la source de nourriture.
+
+```Python
+
+# Dictionnaire des positions possibles à la sortie de la fourmilière:
+
+dict_pos = {1: (dim - 6, dim - 1), 2: (dim -6, dim -2), 3: (dim -6,dim -3), 4: (dim -6, dim -4), 5: (dim -6, dim -5), 6: (dim -6, dim -6), 7: (dim -5, dim -6), 8: (dim -4,dim  -6), 9: (dim -3, dim -6), 10: (dim -2,dim -6), 11: (dim -1,dim -6)}
+
+def eclaireuse(espace):
+    x_ecl, y_ecl = dict_pos[rd.randint(1, 11)]
+    espace[x_ecl,y_ecl] += 1
+    return x_ecl, y_ecl
+```
+
+Pour repérer la fourmi, nous ferons en sorte que chaque case par laquelle elle passe soit incrémentée de 1: il s'agit de la trace chimique, qui permettra à d'autres fourmi de suivre son chemin dans le futur. Plus la valeur de la case sera élevée, plus la probabilité que le chemin soit choisi sera grande.
+
+Nous devons maintenant simuler le déplacement de l'éclaireuse. Nous dirons que la fourmi choisira de se placer à une certaine case de son voisinage, en fonction de la probabilité qui lui est associée. Afin de simuler l'attractivité de la trace chimique (qui sera renforcée au fil des itérations), nous décidons que plus la valeur associée à une case de voisinage est élevée, plus grande sera la probabilité que la fourmi choisisse de s'y placer. Cependant, pour éviter que la fourmi ne repasse toujour par le même chemin et soit attirée par sa propre trace chimique, nous créerons dans le même temps une liste de positions par lesquelles elle est déjà passée, et donc par lesquelles elle __ne pourra plus__ passer.
+
+Pour cela, nous codons la fonction __proba_voisins__ qui prend en argument la liste __liste_voisins__ des positions déjà visitées par la fourmi. Elle retournera une liste __this_proba__des probabilités respectives associées à chacun des voisins de la fourmi.
+
+```Python
+
+def proba_voisins(liste_voisins):
+    this_proba = np.zeros(len(liste_voisins))
+    print (this_proba)
+    for i in range(len(liste_voisins)):
+        x, y = liste_voisins[i]
+        print (espace[x][y])
+        this_proba[i] = (espace[x][y]+1)
+    this_proba = this_proba/np.sum(this_proba)
+    return this_proba
+```
+
