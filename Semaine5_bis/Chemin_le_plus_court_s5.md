@@ -130,3 +130,30 @@ def compt_voisins(i,j,set_visite):
     
     return liste_voisins[indice]
 ```
+
+Ecrivons maintenant une première fonction __dynamics(nb_d'itérations)__ qui simulera la création et le déplacement de l'éclaireuse.
+
+```Python
+
+def dynamics(nb):
+    fourmilière(espace)
+    source(espace)
+    x, y = eclaireuse(espace)
+    set_visite = set()
+    set_visite.add((x,y))
+    print(espace)
+    for i in range(nb):
+        x, y = compt_voisins(x,y, set_visite)
+        espace[x][y] += 1
+        set_visite.add((x,y))
+        print(espace)
+        if x == x_source and y == y_source :
+            print("trouve")
+```
+
+Voici ce que l'on peut obtenir:
+
+
+## Bilan partiel
+
+Notre début de code est fonctionnel, mais nous remarquons qu'arrivée à la source de nourriture, la fourmi continue de se déplacer. Il faudra donc que l'on fasse en sorte qu'une fois la source trouvée, la fourmi revienne d'elle-même vers la fourmilière.
