@@ -125,9 +125,54 @@ def dynamics (nb):
 
         #plt.waitforbuttonpress() #If we want to control manually when it changes.
 ```   
+Pour l'initialisation, outre la fonction __set_queen__ que nous avons écrite dans la semaine 2, nous avons aussi appelé la fonction __init_fourmis__ dont le code est donné ci-dessous.
 
+```python
+def init_fourmis ():
+    """
+    It fills the first 20 spaces of the array ouvriere with a random quantity of ants,
+    so that when the queen is created the anthill can grow immediately (It simulates
+    the ants that go out of an anthill with a new queen to form a new colony).
+    """
+    
+    nb_fourmis = rd.randint(50, 100)
+    for i in range (nb_fourmis):
+        age = rd.randint(0,20)
+        ouvriere[age] += 1
+```
 
+Elle choisit un nombre aléatoire entre 50 et 99 fourmis ouvrières, d'âge entre 46 et 65 jours, pour accompagner la reine à la création de la fourmilière. De cette façon il ne faut pas attendre la maturité des oeufs pondus par la reine pour avoir de changements de taille de la fourmilière.  
 
+Comme vous pouvez voir, __dynamics__ implemente aussi des fonctions de visualisation des simulations. Les fonctions __init_plot_fourmis__ et __display_plot_fourmis__ font essentielement le même graphique que celui de la semaine 1 qui donné la quantité de fourmis par rapport à leur âge en jours. Leurs codes sont donnés ci-dessous:
+
+```python
+def init_plot_fourmis () :
+    
+    fig2 = plt.figure()
+    ax2 = fig2.add_subplot(111)
+    ax2.set_ylabel("Quantité de fourmis")
+    ax2.set_xlabel("Âge des fourmis en jours")  
+    ax2.grid()
+    
+    return ax2, fig2    
+
+def display_plot_fourmis (ax2, fig2) :
+    end_oeuf = len(oeuf)
+    end_larve = end_oeuf + len(larve)
+    end_nymphe = end_larve + len(nymphe)
+    end_ouvriere = end_nymphe + len(ouvriere)
+    
+    ax2.cla()
+    ax2.plot(np.arange(0,end_oeuf),oeuf)
+    ax2.plot(np.arange(end_oeuf,end_larve),larve)
+    ax2.plot(np.arange(end_larve,end_nymphe),nymphe)
+    ax2.plot(np.arange(end_nymphe,end_ouvriere),ouvriere)
+    ax2.set_ylabel("Quantité de fourmis")
+    ax2.set_xlabel("Âge des fourmis en jours")  
+    ax2.grid()
+    fig2.canvas.draw()    
+   ```
+   
 
 
 
