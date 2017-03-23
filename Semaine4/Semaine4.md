@@ -33,7 +33,7 @@ Nous avons choisi la deuxième possibilité car elle nous semble plus interessan
 
 ## Fonctions
 
- La première fonction qui nous avons écrit cette semaine est  ```quant_zeros ()```, qui compte la quantité totale de tunnels existentes dans notre matrice __map__ à un moment donné. Au lieu d'utiliser une boucle imbriquée double pour parcourir la matrice nous avons preferé utiliser la fonction ```sum``` de la bibliothèque numpy et exploiter le fait que ```True``` en Python est consideré comme 1 et ```False``` comme 0.
+ La première fonction qui nous avons écrit cette semaine est  __quant_zeros__, qui compte la quantité totale de tunnels existentes dans notre matrice __map__ à un moment donné. Au lieu d'utiliser une boucle imbriquée double pour parcourir la matrice nous avons preferé utiliser la fonction ```sum``` de la bibliothèque numpy et exploiter le fait que ```True``` en Python est consideré comme 1 et ```False``` comme 0.
 
 ```python
 def quant_zeros ():
@@ -45,7 +45,7 @@ def quant_zeros ():
     return np.sum(map == 0)  
  ```
  
- La deuxième fonction implementée est ```rayon_fourmiliere ()``` , qui retourne la distance maximale des tunnels à la reine:
+ La deuxième fonction implementée est __rayon_fourmiliere__ , qui retourne la distance maximale des tunnels à la reine:
  
  ```python
  def rayon_fourmiliere ():
@@ -173,7 +173,43 @@ def display_plot_fourmis (ax2, fig2) :
     fig2.canvas.draw()    
    ```
    
+Les deux autres fonctions, __init_plot_fourmiliere__ et __display_plot_fourmiliere__, s'occupent de l'affichage de la fourmilière. La première initialise la fenêtre graphique et la deuxième fait l'affichage en boucle de la fourmilière. Pour les couleurs, nous avons crée un _color map_ personalisé: 
 
+```python
+# Defining a personalized color map.
+# 2 = green
+# 1 = black
+# 0 = white
 
+cdict = {'red':   [(0.0, 1.0, 1.0),
+                   (0.5, 0.0, 0.0),
+                   (1.0, 1.0, 1.0)],
 
+         'green': [(0.0, 1.0, 1.0),
+                   (0.5, 0.0, 0.0),
+                   (1.0, 0.0, 0.0)],
 
+         'blue':  [(0.0, 1.0, 1.0),
+                   (0.5, 0.0, 0.0),
+                   (1.0, 0.0, 0.0)]}
+                   
+cmap_custom = mcolors.LinearSegmentedColormap('CustomMap', cdict)
+
+def init_plot_fourmiliere ():                
+
+    dpi = 20.0 #We find 72 dpi to be too small.
+    figsize = (size_map/float(dpi),size_map/float(dpi))
+    fig1 = plt.figure(figsize=figsize,facecolor = "white")
+    ax1 = fig1.add_axes([0.0, 0.0, 1.0, 1.0], frameon = False)
+    ax1.imshow(map, interpolation = 'nearest', cmap = cmap_custom)
+    ax1.set_xticks([]), ax1.set_yticks([])
+    
+    return ax1, fig1
+    
+def display_plot_fourmiliere (ax1, fig1):
+
+    ax1.cla()
+    ax1.imshow(map, interpolation = 'nearest', cmap = cmap_custom)
+    ax1.set_xticks([]), ax1.set_yticks([])
+    fig1.canvas.draw()   
+```
