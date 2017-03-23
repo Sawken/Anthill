@@ -153,6 +153,17 @@ def dynamics(nb):
 
 Voici ce que l'on peut obtenir:
 
+__Première itération__: Création de l'espace, la fourmilière (-1), la source de nourriture (17) et son entourage (3). L'éclaireuse est aussi générée (1)
+
+<p align="center"><img src ="https://github.com/Sawken/Anthill/blob/master/Images/premiere_iteration.jpg?raw=true" alt="Première itération"/></p>
+
+__Plus tard__:
+
+<p align="center"><img src ="https://github.com/Sawken/Anthill/blob/master/Images/milieu.jpg?raw=true" alt="Plus tard"/></p>
+
+__Encore plus tard__:
+
+<p align="center"><img src ="https://github.com/Sawken/Anthill/blob/master/Images/fin.jpg?raw=true" alt="Encore plus tard"/></p>
 
 ## Bilan partiel
 
