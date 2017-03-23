@@ -40,3 +40,33 @@ def fourmilière(espace):
             espace[x,y] = -1
     return espace
 ```
+
+
+## Génération automatique d'une source de nourriture
+
+La source sera représentée dans la matrice par la valeur de la variable __parts__. A chaque fois qu'une fourmi se sera nourrie, parts diminuera de 1, jusqu'à atteindre 0 (source de nourriture épuisée).
+Pour que la simulation soit intéressante, imposons pour ce premier essai que la source de nourriture se situe dans une case aléatoire de la zone supérieure gauche de l'espace. Bien sûr, dans des versions futures, nous pourrons générer des sources de nourriture à des endroits aléatoires de l'espace. Mais comme nous nous limitons ici à une seule source de nourriture, le comportement des fourmis sera d'autant plus visible que la source sera éloignée.
+
+Nous avons testé plusieurs versions de cette fonction, mais nous nous trouvions à chaque fois devant le même problème: la fourmi éclaireuse se déplaçant 'aléatoirement' dans l'espace n'aura que très peu de chance de réellement croiser la source de nourriture (à moins bien sûr que nous itérions de très nombreuses fois). Pour remédier à cela, nous décidons de créer autour de la source de nourriture un espace rempli de phéromones marquées 3, qui signaleront aux fourmis la proximité d'une source de nourriture et les attireront.
+
+```Python
+
+parts = 17
+
+# Tirage aléatoire des coordonnées de la source de nourriture. On imposera qu'elle suite forcément dans le coin
+# supérieur gauche de la matrice espace.
+
+x_source = rd.randint(0,8)
+y_source = rd.randint(0,8)
+
+def source(espace):
+    espace[x_source, y_source] = parts
+    # Création du voisinage de la source de nourriture
+    for x in range(x_source-3, x_source+4):
+        for y in range(y_source-3, y_source+4):
+            if (x < dim) and (x >= 0):
+                if (y < dim) and (y >= 0):
+                    if espace[x,y] != parts:
+                        espace[x,y] = 3
+    return 
+```
