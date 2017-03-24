@@ -10,7 +10,7 @@ Pour diminuer la densité de tunnels nous avons d'abord essayé l'idée evoquée
 
 Voici un figure d'un résultat typique de la simulation avec ces changements:
 
-<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas_visinhanca_4.png?raw=true" alt="Simmulation foumilière 2">
+<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas_visinhanca_4.png?raw=true" alt="Simulation foumilière 2">
 </p>
 
 Nous pouvons voir que ce changement n'a pas été suffisant car la proportion de 0.2 rend la croissance presque impossible en dehors de la boule de rayon 15 centrée dans la reine. Pour corriger cela nous avons décidé de changer un autre paramètre du système, la taille du voisinage autour duquel on regarde pour calculer la proportion de tunnels voisins. En effet, à proximité des extremités de la fourmilière il y a beaucoup d'espaces vides ce qui nous fait penser que ce changement favoriserait une croissance vers l'exterieur, tout en gardant moins de densité. Nous avons crée une variable globale appelée __voisinage_exte__, fixée dans un premier momment à 4, et changé le code de la fonction __voisinage_zero__ pour qu'elle prenne cette variable comme argument. 
@@ -35,6 +35,46 @@ def voisinage_zero (i, j, exte):
  ```
 Voici une simulation avec ce changement:
 
-<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas_visinhanca_3.png?raw=true" alt="Simmulation foumilière 3">
+<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas_visinhanca_3.png?raw=true" alt="Simulation foumilière 3">
 </p>
-En outre, nous avons essayer quel effect aurait une augmentation de la taille du voisinage prise en compte pour décider si un nouveau tunnel sera crée ou non.  
+
+La simulation est beaucoup plus proche de la realité avec de tunnels plus longs, mais elle reste plutôt circulaire avec 2 cercles bien définis. Le cercle plus petit provient de la partie avec la densité plus grande, ce qui est bien visible. Cette figure laisse l'impression que le modèle est déjà assez proche d'un générateur de fourmilière raisonnable. Pour le raffiner, nous avons fait plusieurs essais et sommes enfin abouti à la fonction suivante:
+
+```python
+        
+def proba_tun (i, j, rayon):
+    """
+    Computes the probability of digging a new tunnel from the position (i, j) taking
+    in account the proportion of neighbours that are already dig. If more than
+    0.4 of neighbors are already tunnels, the function return zero (so, no more
+    tunnels are made based in this position). Otherwise, the probability of digging 
+    a tunnel is set to be under the form f(x) = a * (x - 1/2) ** 2, with "a" 
+    chosen in order to have f(1/8) = 1/2. This way we use only half of a parabole.
+    """
+    
+    t = voisinage_zero (i, j, voisinage_exte)
+    dist = map_dist [i][j]
+    if dist < 15 and t < 0.4:
+        if dist > 0.50 * rayon:
+        # This way we increase the chance for a tunnel to be created far from the queen.
+            return (32/9) * (t - 1/2) ** 2
+        else:
+            return 0
+            #testing different possibilities.
+            #return (((32/9) * (t - 1/2) ** 2) * dist)/(0.050 * rayon)
+       
+    else:
+        if t < 0.2:
+           if dist > 0.50 * rayon:
+            # This way we increase the chance for a tunnel to be created far from the queen.
+               return (32/9) * (t - 1/2) ** 2
+           else:
+                return 0
+                #testing different possibilities.
+                #return (((32/9) * (t - 1/2) ** 2) * dist)/(0.050 * rayon)
+        else:
+            return 0
+```
+
+
+
