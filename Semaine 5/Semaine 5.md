@@ -62,9 +62,59 @@ def proba_tun (i, j, rayon):
     return 0
 ```
 
-La fonction prend maintenant aussi la distance du tunnel le plus eloigné de la reine comme argument et utilisé ce nombre pour privilegier la croissance de tunnels loins de la reine. La simulation avec cette fonction a une allure moins circulaire et plus naturelle, comme on peut voir sur la figure ci-après:
+La fonction prend maintenant aussi la distance du tunnel le plus eloigné de la reine comme argument et utilisé ce nombre pour privilegier la croissance de tunnels loins de la reine. La simulation avec cette fonction a fait disparaître le cercle autour de la reine et a une allure plus naturelle, comme on peut voir sur la figure ci-après:
 
 
 <p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas_circular2.png?raw=true" alt="Simulation foumilière 3">
 </p>
 
+Par contre, on peut voir clairement le contour d'un cercle englobant la fourmilière, que nous croyons provenir de la façon déterministe
+de déstruction des tunnels. Nous alons donc modifier la fonction __decroissance_tun__.
+
+## Décroissance
+
+Nou voulons modifier la fonction __decroissance_tun__ pour qu'elle ne choisisse plus les __quant_tun__ tunnels plus éloignés mais qu'il y ait un facteur aléatoire dans la destruction. Pour cela, nous avons décidé de créer deux vecteurs, __list_zero_dist__ et __list_zero_pos__, comme dans la version précédente mais au lieu de les effacer tous, nous en choisissons un au hasard et nous détruisons le plus petit carré autour de lui contenant au moins __quant_tun__ tunnels. Voici le code de cette nouvelle version de la fonction:
+
+```python
+def decroissance_tun (quant_tun) :
+    """
+    This function computes all the possible destruction of tunnels in 1 round and
+    applies it.
+    """
+    map_old = copy.copy (map)
+    #We use a copy of map to decide if a tunnel is destroyed so it doesnt influenciates the rest of the destruction cicle.
+    list_zero_dist = np.zeros(quant_tun,dtype = "float32")
+    # This is an array with the distances of a quantity "quant_tun" of zeros to the queen were in the end we will have the "quant_tun" farthest zeros.
+    list_zero_pos = np.zeros((quant_tun,2),dtype = "int16")
+    # This array stocks the coordinates of each zero that is in list_zero_dist.
+    for i in range(size_map):
+       for j in range(size_map):
+           if (map_old[i][j] == 0) and map_dist[i][j] > 1.5 :
+           # The 1.5 distance prevents the destruction of tunnels that are direct neighbors to the queen.
+               k = 0
+               while (k < quant_tun) and (list_zero_dist[k] > map_dist[i][j]):
+                   k += 1
+               # Test to see why it got out of the loop.
+               if k < quant_tun:
+                   # Displaces each element of both arrays of one position.
+                   list_zero_dist[k + 1 : ] = list_zero_dist[k : quant_tun - 1]
+                   list_zero_pos[k + 1 : ][ : ] =  list_zero_pos [k : quant_tun - 1][ : ]
+                   # Puts the new zero, that is further to the queen, in both arrays.
+                   list_zero_dist[k] = map_dist[i][j]
+                   list_zero_pos[k][ : ] = [i, j] 
+                   
+    quant_final = quant_tun               
+    destruct = np.random.choice(quant_tun)
+    x, y = list_zero_pos[destruct][0], list_zero_pos[destruct][1]
+    side = 1
+    quant_0 = quant_zeros()
+    while quant_final > 0 and quant_0 > 8 :
+        for k in range(-side, side + 1):
+            for l in range(-side, side + 1):
+                if (k + x >= 0 and k + x < size_map and l + y >= 0 and l + y < size_map): 
+                    if map[k + x][l + y] == 0 and map_dist [k + x][l + y] > 1.5:
+                        quant_final -= 1 
+                        map[k + x][ l + y] = 1
+                        quant_0 -= 1
+            side += 1
+```    
