@@ -33,5 +33,8 @@ def voisinage_zero (i, j, exte):
         
     return float(cpt_0/cpt_total)
  ```
+Voici une simulation avec ce changement:
 
+<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas_visinhanca_3.png?raw=true" alt="Simmulation foumilière 3">
+</p>
 En outre, nous avons essayer quel effect aurait une augmentation de la taille du voisinage prise en compte pour décider si un nouveau tunnel sera crée ou non.  
