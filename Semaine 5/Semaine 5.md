@@ -54,27 +54,17 @@ def proba_tun (i, j, rayon):
     
     t = voisinage_zero (i, j, voisinage_exte)
     dist = map_dist [i][j]
-    if dist < 15 and t < 0.4:
-        if dist > 0.50 * rayon:
+    if dist < 15 and t < 0.4 and dist > 0.50 * rayon:
+        return (32/9) * (t - 1/2) ** 2
+    if t < 0.2 and dist > 0.50 * rayon:
         # This way we increase the chance for a tunnel to be created far from the queen.
-            return (32/9) * (t - 1/2) ** 2
-        else:
-            return 0
-            #testing different possibilities.
-            #return (((32/9) * (t - 1/2) ** 2) * dist)/(0.050 * rayon)
-       
-    else:
-        if t < 0.2:
-           if dist > 0.50 * rayon:
-            # This way we increase the chance for a tunnel to be created far from the queen.
-               return (32/9) * (t - 1/2) ** 2
-           else:
-                return 0
-                #testing different possibilities.
-                #return (((32/9) * (t - 1/2) ** 2) * dist)/(0.050 * rayon)
-        else:
-            return 0
+        return (32/9) * (t - 1/2) ** 2
+    return 0
 ```
 
+La fonction prend maintenant aussi la distance du tunnel le plus eloigné de la reine comme argument et utilisé ce nombre pour privilegier la croissance de tunnels loins de la reine. La simulation avec cette fonction a une allure moins circulaire et plus naturelle, comme on peut voir sur la figure ci-après:
 
+
+<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas_circular2.png?raw=true" alt="Simulation foumilière 3">
+</p>
 
