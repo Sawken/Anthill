@@ -8,7 +8,7 @@ Cette semaine nous nous sommes concentrés sur des changements sur les fonctions
 
 Pour diminuer la densité de tunnels nous avons d'abord essayé l'idée evoquée precédement de faire dépendre la probabilité de creation de tunnels aussi de la distance de la reine. Pour cela nous avons changé la fonction __proba_tun__ afin de considerer 2 proportions maximales de voisins differentes, selon la distance de la reine. Si la distance d'un tunnel à la reine est plus petite que 15, la proportion reste la même (0.4), sinon elle baisse à 0.2. Comme cela nous attendions que la situation de blocage serait évité tout en diminuant la densité de tunnels. 
 
-Voici un figure d'un résultat typique de la simulation avec ces changements:
+Voici un figure d'un résultat typique de la simulation avec ces changements (toutes les simulations suivantes ont été faites sur 1 an):
 
 <p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas_visinhanca_4.png?raw=true" alt="Simulation foumilière 2">
 </p>
@@ -62,9 +62,9 @@ def proba_tun (i, j, rayon):
     return 0
 ```
 
-La fonction prend maintenant aussi la distance du tunnel le plus eloigné de la reine comme argument et utilisé ce nombre pour privilegier la croissance de tunnels loins de la reine. La simulation avec cette fonction a fait disparaître le cercle autour de la reine et a une allure plus naturelle, comme on peut voir sur la figure ci-après:
+La fonction prend maintenant aussi la distance du tunnel le plus eloigné de la reine comme argument et utilise ce nombre pour privilegier la croissance de tunnels loins de la reine. La simulation avec cette fonction a fait disparaître le cercle autour de la reine et a une allure plus naturelle, comme on peut voir sur la figure ci-après:
 
-<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas_circular2.png?raw=true" alt="Simulation foumilière 3">
+<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas_circular2.png?raw=true" alt="Simulation foumilière 4">
 </p>
 
 Par contre, on peut voir clairement le contour d'un cercle englobant la fourmilière, que nous croyons provenir de la façon déterministe
@@ -117,7 +117,7 @@ def decroissance_tun (quant_tun) :
                         quant_0 -= 1
             side += 1
 ```    
-<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas_circular3.png?raw=true" alt="Simulation foumilière 3">
+<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas_circular3.png?raw=true" alt="Simulation foumilière 5">
 </p>
 
 L'image est beaucoup plus satisfaisante mais présente encore un problème: Les tunnels continuent à croître même lorsqu'ils ne sont plus connectés à la reine! Pour le remedier nous avons fait le choix de, à la fin de la fonction __decroissance_tun__, détruire aussi les tunnels qui ne sont pas connectés à la reine.
@@ -196,13 +196,15 @@ def connexe (i,j):
 ```
 Le résultat de tout ces changements est bien vu dans les figures suivantes:
 
-<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas4.png?raw=true" alt="Simulation foumilière 3">
+<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas4.png?raw=true" alt="Simulation foumilière 6">
 </p>
 
-<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas3.png?raw=true" alt="Simulation foumilière 3">
+<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas3.png?raw=true" alt="Simulation foumilière 7">
 </p>
 
-<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas7.png?raw=true" alt="Simulation foumilière 3">
+<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas7.png?raw=true" alt="Simulation foumilière 8">
 </p>
 
+## Conclusion
 
+Les dernières simulations montrent une résultat très satisfatoire, proche de ce à quoi on s'attendait au début de ce projet. Les tunnels ressemblent ceux d'une fourmilière, en croissant de façon aléatoire avec quelques chambres et de tunnels plutôt longs. Nous alons maintenant nous concentrer sur la deuxième partie du travail (la recherche de nourriture) et son intégration avec la dynamique de la fourmilière.
