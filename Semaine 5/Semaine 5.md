@@ -117,7 +117,7 @@ def decroissance_tun (quant_tun) :
                         quant_0 -= 1
             side += 1
 ```    
-<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas_circular2.png?raw=true" alt="Simulation foumilière 3">
+<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas_circular3.png?raw=true" alt="Simulation foumilière 3">
 </p>
 
 L'image est beaucoup plus satisfaisante mais présente encore un problème: Les tunnels continuent à croître même lorsqu'ils ne sont plus connectés à la reine! Pour le remedier nous avons fait le choix de, à la fin de la fonction __decroissance_tun__, détruire aussi les tunnels qui ne sont pas connectés à la reine.
@@ -194,5 +194,15 @@ def connexe (i,j):
            if (map[i][j] == 0) and (i,j) not in set_connexe:
                map[i][j] = 1    
 ```
-Le résultat de tout ces changements est bien vu dans la figure suivante:
+Le résultat de tout ces changements est bien vu dans les figures suivantes:
+
+<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas4.png?raw=true" alt="Simulation foumilière 3">
+</p>
+
+<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas3.png?raw=true" alt="Simulation foumilière 3">
+</p>
+
+<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/formigas7.png?raw=true" alt="Simulation foumilière 3">
+</p>
+
 
