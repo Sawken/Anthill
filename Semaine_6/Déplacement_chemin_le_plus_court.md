@@ -20,8 +20,8 @@
   
  ```Python
 def compt_voisins(i,j,set_visite):
-    """ Cette fonction choisit une position aléatoire voisine à la fourmi située à la position (i,j) en créant une liste 
-    de probabilités associées à chaque position. Elle retourne les coordonnées de de la nouvelle position."""
+    """ Cette fonction choisit une position aléatoire voisine à la fourmi située à la position (i,j) en créant
+    une liste de probabilités associées à chaque position. Elle retourne les coordonnées de de la nouvelle position."""
     liste_voisins = []
     for k, l in neighbs:
         if (l + i >= 0 and l + i < dim and j + k >= 0 and k + j < dim): 
