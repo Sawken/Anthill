@@ -1,5 +1,6 @@
 # Anthill
 Anthill ARE (Dynamics) - UPMC
+__Groupe AntHill__: Ariana CARNIELLI, Cécile GIANG, Corneille KALUNGA (Sofiane HASNAOUI)
 
 
 ## Résumé
