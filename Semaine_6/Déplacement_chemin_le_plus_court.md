@@ -15,7 +15,23 @@
   Voici la fonction permettant ceci:
   
  ```Python
- 
+def compt_voisins(i,j,set_visite):
+    """ Cette fonction choisit une position aléatoire voisine à la fourmi située à la position (i,j) en créant une liste de
+    probabilités associées à chaque position. Elle retourne les coordonnées de de la nouvelle position."""
+    liste_voisins = []
+    for k, l in neighbs:
+        if (l + i >= 0 and l + i < dim and j + k >= 0 and k + j < dim): 
+            if ((l+i,k+j) not in set_visite) and (espace[l+i][k+j] != -1):
+                # Check if we're not outside boundaries of the array.
+                liste_voisins.append([l+i,k+j])
+    if liste_voisins == []:
+
+        return (-1, -1)         
+    
+    this_proba = proba_voisins (liste_voisins)
+    indice = np.random.choice (len(liste_voisins),p = this_proba)
+    
+    return liste_voisins[indice] 
  
  ```
  
@@ -25,6 +41,30 @@ Noous décidons alors d'incrémenter une trace chimique de +5 à chaque fois afi
 
 ```Python
 
+def dynamics(nb):
+    """"Cette fonction simule le deplacement d'une fourmi. """    
+    
+    global espace
+    espace_old = copy.copy(espace)
+    
+    x, y = eclaireuse(espace)
+    set_visite = set()
+    set_visite.add((x,y))
+    
+    for i in range(nb):
+        x, y = compt_voisins(x,y, set_visite)
+        if (x == -1 and y == -1) or (x == x_source and y == y_source) :
+            if (x == x_source) and (y == y_source):
+                espace[x][y] += 5
+                return True
+
+            else:
+
+                espace = copy.copy (espace_old)
+                return False
+        else:
+            espace[x][y] += 5
+            set_visite.add((x,y))
 
 ```
 
@@ -32,16 +72,85 @@ Nous décidons dons de réutiliser une idée qu'Ariana avait déjà eu pendant l
 
 ```Python
 
+def proba_voisins(liste_voisins):
+
+    """ Fait le déplacement de la fourmi """    
+    
+    this_proba = np.zeros(len(liste_voisins))
+    for i in range(len(liste_voisins)):
+        x, y = liste_voisins[i]
+        this_proba[i] = (espace[x][y]+1)
+
+    this_proba = np.exp(this_proba)
+   
+    this_proba = this_proba/np.sum(this_proba)
+
+    return this_proba
 
 ```
 
 Le code étant maintenant fonctionnel, nous nous occupons de la mise en graphique avec __Matplotlib__, comme nous l'avions déjà fait dans les programmes pour l'expansion des tunnels (*Semaine 5*) et la croissance de population (*Semaine 3 bis*).
 
 ```Python
+def plot_espace ():
+    
+    """Cette fonction dessine le graphe du chemin, il faut l'appeler à
+    chaque fois qu'on veut voir le graphe. """    
+    
+    M = np.max(espace)
+    norm = mcolors.Normalize(-1,M)
+         
+    # Defining a personalized color map.
+    # M = blue
+    # 0 = white
+    # -1 = red
+    
+    cdict = {'red':   [(norm(-1), 1.0, 1.0),
+                       (norm(0), 1.0, 1.0),
+                       (norm(M), 0.0, 0.0)],
+    
+             'green': [(norm(-1), 0.0, 0.0),
+                       (norm(0), 1.0, 1.0),
+                       (norm(M), 0.0, 0.0)],
+    
+             'blue':  [(norm(-1), 0.0, 0.0),
+                       (norm(0), 1.0, 1.0),
+                       (norm(M), 1.0, 1.0)]}
+                       
+    cmap_custom = mcolors.LinearSegmentedColormap('CustomMap', cdict, N = M + 2)
 
+    
+    dpi = 20.0 
+    figsize = (dim/float(dpi),dim/float(dpi))
+    fig1 = plt.figure(figsize=figsize,facecolor = "white")
+    ax1 = fig1.add_axes([0.0, 0.0, 1.0, 1.0], frameon = False)
+    ax1.imshow(espace, interpolation = 'nearest', cmap = cmap_custom, norm = norm)
+    ax1.set_xticks([]), ax1.set_yticks([])
+    fig1.canvas.draw()    
+
+
+def sim_1 (nb):
+    
+    """Cette fonction tourne jusqu'à ce que la première fourmi trouve la source de nourriture"""
+    
+    dynamics_premier (nb)    
+    
+    while not dynamics(nb):
+        print("a",end = "")
+        
+def sim_renforce (nb):
+    
+    """ Elle génère à chaque itération (nb en tout) une fourmi qui va effectuer nb pas, en laissant une trace chimique
+    que si elle trouve la source de nourriture""""
+    
+    for i in range(200):
+        dynamics(nb)
+     
+#Il faut appeler d'abbord la fonction sim_1 avec nb le nombre d'iterations maximale pour 
+#     qu'une fourmi trouve la nourriture, après appeler sim_renforce pour generer 200 fourmis
+#     suplementaires et à la fin appeler plot_espace pour creer le graphe.
 
 ```
-
 
 Voici des figures que nous pouvons obtenir:
 
