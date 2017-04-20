@@ -164,3 +164,12 @@ def sim_renforce (nb):
 
 Voici des figures que nous pouvons obtenir:
 
+*(a) Au bout de 25 tours:*
+
+<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/chemin_sim2_1.png?raw=true" alt="Simulation chemin court 25 tours">
+</p>
+
+*(b) Au bout de 200 tours:*
+
+<p align="center"><img src="https://github.com/Sawken/Anthill/blob/master/Images/chemin_sim2_2.png?raw=true" alt="Simulation chemin court 200 tours">
+</p>
